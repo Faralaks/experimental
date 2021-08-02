@@ -1,0 +1,63 @@
+{{define "index"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Faralaks Index Page</title>
+    <style>
+        body {
+            font-size: 1.6em;
+            font-family: "Comic Sans MS", serif;
+            padding-left: 10px;
+        }
+        .murkyBtn {
+            font-size: 1em;
+            font-family: "Comic Sans MS", serif;
+            padding: 2px 35px 3px 35px;
+            cursor: pointer;
+            background: black;
+            color: orange;
+            border: 3px solid red;
+            border-radius: 15px;
+
+        }
+
+        .murkyBtn:hover {color: #72c1e6;}
+        .murkyBtn:active {color: white}
+
+
+        .dn {
+            display: none;
+        }
+        .center {
+            text-align: center;
+            align-content: center;
+        }
+
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        function randInt(min, max) {return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) + Math.ceil(min);}
+
+        $("#nickPlace").ready(function () {
+            $("#nickPlace").append($(`<iframe id="nickFrame" src="https://nick-name.ru/nickname/id1699677/" width="${randInt(600, 1200)}" height="${randInt(600, 2200)}"></iframe>
+`))
+        })
+    </script>
+</head>
+<body>
+    <div class="center">
+        <h1>Faralaks Index Page</h1>
+    </div>
+    <div class="center">
+        <a class="murkyBtn" href="/?x=5&y=10">x=5&y=10</a><br><br>
+
+        <span>X: {{.X}}</span>
+        <span>Y: {{.Y}}</span>
+        <span>Z: {{.Z}}</span>
+    </div>
+
+</body>
+</html>
+{{end}}
