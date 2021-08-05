@@ -1,6 +1,7 @@
 package main
 
 import (
+	"experemental/code/super_functions"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -18,7 +19,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if res.X != "" || res.Y != "" {
 		x, _ := strconv.Atoi(res.X)
 		y, _ := strconv.Atoi(res.Y)
-		res.Z = strconv.Itoa(Alinka(x, y))
+		res.Z = strconv.Itoa(super_functions.Alinka(x, y))
 	}
 
 	w.Header().Set("Content-Type", "text/html")
@@ -37,19 +38,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func Alinka(x, y int) int {
-	// Суммирует два числа и возвращает результат сложения
-	// Паникует, если результат больше 100
-
-	sum := x + y
-	if sum > 100 {
-		panic("AAAA! это число слишком большое!")
-	}
-	return sum
-}
-
 func main() {
-	println("\t\t\tGo Index Page Is starting")
+	println("\n\t\t\tGo experemental Is starting")
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", indexHandler)
