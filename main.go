@@ -13,13 +13,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		Y string
 		Z string
 	}{Z: ""}
-
 	res.X = r.FormValue("x")
 	res.Y = r.FormValue("y")
 	if res.X != "" || res.Y != "" {
 		x, _ := strconv.Atoi(res.X)
 		y, _ := strconv.Atoi(res.Y)
-		res.Z = strconv.Itoa(super_functions.Alinka(x, y))
+		s := super_functions.SumObj{}
+		res.Z = strconv.Itoa(s.Sum(x, y))
 	}
 
 	w.Header().Set("Content-Type", "text/html")
