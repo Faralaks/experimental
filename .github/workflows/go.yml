@@ -27,7 +27,7 @@ jobs:
           go-version: 1.16
 
       - name: Build
-        run: go build -v ./main.go -o linuxExe
+        run: go build -v ./... -o linuxExe
 
       - name: Test
         run: go test -v ./...
