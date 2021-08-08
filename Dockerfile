@@ -1,14 +1,12 @@
-FROM golang:1.15.2
+FROM alpine:3.13
 
 
-WORKDIR /go/src/app
-COPY main.go .
+WORKDIR /opt/myapp/
+COPY linuxExe .
+COPY ./templates ./templates
 
-RUN go get ./..
-RUN go build -o go_tst main.go
-RUN chmod +x go_tst
+RUN chmod +x linuxExe
 
 EXPOSE 80
 
-
-CMD [ "./go_tst" ]
+ENTRYPOINT [ "./linuxExe" ]
