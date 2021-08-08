@@ -12,6 +12,11 @@ type CanSum interface {
 	Sum(x, y int) int
 }
 
+func DoSum(x, y int, s CanSum) error {
+	s.Sum(x, y)
+	return nil
+}
+
 func (so *SumObj) Sum(x, y int) int {
 	// Суммирует два числа и возвращает результат сложения
 	// Паникует, если результат больше 100

@@ -8,9 +8,13 @@ import (
 
 func TestSum(t *testing.T) {
 	x := 1
-	//y := 1
-	m := super_functions.NewCanSumMock(t)
-	m.SumMock.Return(2)
-	r := m.Sum(x, 22)
-	require.Equal(t, 2, r)
+	y := 2
+	s := super_functions.SumObj{}
+	s.Sum(x, y)
+
+	require.Equal(t, 1, s.X)
+	require.Equal(t, 2, s.Y)
+	require.Equal(t, 3, s.Z)
+
+	require.True(t, s.AfterCalc)
 }
