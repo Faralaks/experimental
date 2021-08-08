@@ -44,5 +44,8 @@ func main() {
 
 	mux.HandleFunc("/", indexHandler)
 
-	_ = http.ListenAndServe(":80", mux) // Запускаем сервер
+	err := http.ListenAndServe(":80", mux) // Запускаем сервер
+	if err != nil {
+		panic(err)
+	}
 }
