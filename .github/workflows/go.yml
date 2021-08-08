@@ -12,7 +12,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build_test_make_mage:
+  build_test_make_image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
