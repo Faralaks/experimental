@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Run my sctipt
-    - uses: actions/github-script@v4
+      uses: actions/github-script@v4
       id: my-script
       with:
         script: console.log(context)
