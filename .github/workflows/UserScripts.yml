@@ -1,0 +1,21 @@
+name: UserScripts
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run my sctipt
+    - uses: actions/github-script@v4
+      id: my-script
+      with:
+        script: console.log(context)
