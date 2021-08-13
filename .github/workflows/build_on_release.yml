@@ -19,4 +19,4 @@ jobs:
       uses: actions/github-script@v4
       id: my-script
       with:
-        script: console.log(context.release)
+        script: console.log(context.payload)
