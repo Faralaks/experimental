@@ -1,4 +1,4 @@
-name: UserScripts
+name: build_on_release
 
 on:
   workflow_dispatch:
@@ -18,4 +18,4 @@ jobs:
       uses: actions/github-script@v4
       id: my-script
       with:
-        script: console.log(context)
+        script: console.log(context.payload.release)
