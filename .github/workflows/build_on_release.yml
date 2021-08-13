@@ -16,4 +16,4 @@ jobs:
       uses: actions/github-script@v4
       id: my-script
       with:
-        script: console.log(context.payload)
+        script: console.log(context.payload.release.tag_name)
