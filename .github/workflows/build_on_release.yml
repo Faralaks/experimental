@@ -3,11 +3,8 @@ name: build_on_release
 on:
   workflow_dispatch:
   release:
-    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
     types: [published]
-  push:
-  pull_request:
-    branches: [ master ]
+
 
 jobs:
   run_script:
