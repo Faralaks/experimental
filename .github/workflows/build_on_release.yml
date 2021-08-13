@@ -8,7 +8,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  IMAGE_TAG: context.payload.release.tag_name
 
 jobs:
   make_image:
@@ -39,10 +38,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Second sctipt
-        uses: actions/github-script@v4
-        with:
-          script: console.log(steps.meta)
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2.6.1
