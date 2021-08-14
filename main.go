@@ -31,6 +31,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	err = tmpl.ExecuteTemplate(w, "index", res)
+	if err != nil {
+		http.Error(w, err.Error(), 400)
+		return
+	}
 
 }
 
