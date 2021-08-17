@@ -1,4 +1,4 @@
-name: build_on_release
+name: arm_build_on_release
 
 on:
     workflow_dispatch:

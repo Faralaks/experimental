@@ -11,7 +11,7 @@ RUN go build -o armExe main.go
 
 
 
-FROM arm64v8/alpine3.13
+FROM arm64v8/alpine
 
 
 WORKDIR /opt/myapp/
