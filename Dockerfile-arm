@@ -1,0 +1,26 @@
+FROM arm64v8/golang:1.16 as builder
+
+WORKDIR /go/src/app
+COPY go.mod .
+COPY go.sum .
+COPY main.go .
+COPY ./code ./code
+
+RUN go mod download
+RUN go build -o armExe main.go
+
+
+
+FROM arm64v8/alpine3.13
+
+
+WORKDIR /opt/myapp/
+COPY --from=builder /go/src/app/armExe .
+
+COPY ./templates ./templates
+
+RUN chmod +x linuxExe
+
+EXPOSE 80
+
+ENTRYPOINT [ "./armExe" ]

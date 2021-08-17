@@ -1,0 +1,45 @@
+name: build_on_release
+
+on:
+    workflow_dispatch:
+    release:
+        types: [ published ]
+
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+    make_image:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        steps:
+        -   name: Checkout repository
+            uses: actions/checkout@v2
+
+
+        -   name: Log in to the Container registry
+            uses: docker/login-action@v1.10.0
+            with:
+                registry: ${{ env.REGISTRY }}
+                username: ${{ github.actor }}
+                password: ${{ secrets.DockerRW }}
+
+        -   name: Extract metadata (tags, labels) for Docker
+            id: meta
+            uses: docker/metadata-action@v3.4.1
+            with:
+                images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+
+        -   name: Build and push ARM-Docker image
+            uses: docker/build-push-action@v2.6.1
+            with:
+                file: Dockerfile-arm
+                push: true
+                platforms: linux/arm64/v8
+                tags: ${{ steps.meta.outputs.tags }}-arm
+                labels: ${{ steps.meta.outputs.labels }}
