@@ -28,6 +28,9 @@ jobs:
         -   name: Test
             run: go test -v ./...
 
+        -   name: Docker Layer Caching
+        -   uses: satackey/action-docker-layer-caching@v0.0.11
+
         -   name: Try to build Docker image
             uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
             with:

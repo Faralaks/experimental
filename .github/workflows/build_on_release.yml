@@ -19,7 +19,6 @@ jobs:
         -   name: Checkout repository
             uses: actions/checkout@v2
 
-
         -   name: Log in to the Container registry
             uses: docker/login-action@v1.10.0
             with:
@@ -33,15 +32,8 @@ jobs:
             with:
                 images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-
-        -   name: Build and push ARM-Docker image
-            uses: docker/build-push-action@v2.6.1
-            with:
-                context: .
-                push: true
-                platforms: linux/arm64/v8
-                tags: ${{ steps.meta.outputs.tags }}-arm
-                labels: ${{ steps.meta.outputs.labels }}
+        -   name: Docker Layer Caching
+        -   uses: satackey/action-docker-layer-caching@v0.0.11
 
         -   name: Build and push Docker image
             uses: docker/build-push-action@v2.6.1
